@@ -26,7 +26,7 @@ module.exports = function (grunt) {
                 // Write the destination file.
                 if (defsOutput.exitcode !== 0) {
                     grunt.log.error('defs failed with code ' + defsOutput.exitcode + '.');
-                    errorHasOccured = true;
+                    return false;
                 }
 
                 // Remove the temporary destination file if existed.
@@ -37,6 +37,7 @@ module.exports = function (grunt) {
 
                 // Print a success message.
                 grunt.log.ok('File "' + destPath + '" generated.');
+                return true;
             }
 
             // Merge task-specific and/or target-specific options with these defaults.
