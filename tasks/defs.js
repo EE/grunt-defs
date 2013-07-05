@@ -24,8 +24,10 @@ module.exports = function (grunt) {
                 const defsOutput = defs(grunt.file.read(srcPath), defsOptions);
 
                 // Write the destination file.
-                if (defsOutput.exitcode !== 0) {
-                    grunt.log.error('defs failed with code ' + defsOutput.exitcode + '.');
+                if (defsOutput.errors) {
+                    defsOutput.errors.forEach(function (error) {
+                        grunt.log.error(error);
+                    });
                     return false;
                 }
 
@@ -76,4 +78,5 @@ module.exports = function (grunt) {
 
             return !errorHasOccured;
         });
+
 };
