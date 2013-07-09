@@ -55,13 +55,13 @@ module.exports = function (grunt) {
             });
 
             function runDefs(srcPath, destPath, defsOptions) {
-                grunt.log.writeln('Generating"' + destPath + '" from "' + srcPath + '"...');
                 filesNum++;
 
                 var defsOutput = defs(grunt.file.read(srcPath), defsOptions);
 
                 // Write the destination file.
                 if (defsOutput.errors) {
+                    grunt.log.writeln('Generating"' + destPath + '" from "' + srcPath + '"...');
                     defsOutput.errors.forEach(function (error) {
                         grunt.log.error(error);
                     });
