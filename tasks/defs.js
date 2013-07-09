@@ -55,7 +55,7 @@ module.exports = function (grunt) {
             });
 
             function runDefs(srcPath, destPath, defsOptions) {
-                grunt.log.log('Generating"' + destPath + '" from "' + srcPath + '"...');
+                grunt.log.writeln('Generating"' + destPath + '" from "' + srcPath + '"...');
                 filesNum++;
 
                 var defsOutput = defs(grunt.file.read(srcPath), defsOptions);
