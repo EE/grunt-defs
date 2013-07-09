@@ -1,6 +1,6 @@
 {
     "name": "grunt-defs",
-    "version": "0.2.3-pre",
+    "version": "0.3.0",
     "description": "Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3.",
     "homepage": "https://github.com/EE/grunt-defs",
     "author": {
@@ -23,7 +23,7 @@
         }
     ],
     "dependencies": {
-        "defs": "https://github.com/EE/defs/tarball/var"
+        "defs": "~0.4.0"
     },
     "devDependencies": {
         "grunt-contrib-jshint": "~0.6.0",
