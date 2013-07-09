@@ -1,8 +1,7 @@
 'use strict';
 
-const grunt = require('grunt');
-const defs = require('defs');
-const fs = require('fs');
+var grunt = require('grunt'),
+    defs = require('defs');
 
 /*
  ======== A Handy Little Nodeunit Reference ========
@@ -39,14 +38,15 @@ exports.defs = {
     simple_example: function (test) {
         test.expect(2);
 
-        const defsOutput = defs(grunt.file.read('test/fixtures/simple_example.js'), this.options);
+        var defsOutput = defs(grunt.file.read('test/fixtures/simple_example.js'), this.options),
+            expected = grunt.file.read('test/expected/simple_example.js');
 
-        test.equal(defsOutput.exitcode, 0, 'should exit with code 0.');
-        if (defsOutput.exitcode !== 0) {
+        test.equal(defsOutput.errors, undefined, 'should provide no errors.');
+        if (defsOutput.errors) {
+            test.done();
             return;
         }
 
-        const expected = grunt.file.read('test/expected/simple_example.js');
         test.equal(defsOutput.src, expected, 'should transform consts & lets to vars.');
 
         test.done();

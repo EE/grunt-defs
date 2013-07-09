@@ -1,8 +1,9 @@
-/*
- * defs
- * https://github.com/olov/defs
+/**
+ * grunt-defs
+ * https://github.com/EE/grunt-defs
  *
- * Copyright (c) 2013 Olov Lassus
+ * Author Michał Gołębiowski <michal.golebiowski@laboratorium.ee>
+ * Copyright (c) 2013 Laboratorium EE
  * Licensed under the MIT license.
  */
 
