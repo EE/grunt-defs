@@ -83,7 +83,7 @@ module.exports = function (grunt) {
                     validRun = false;
                     grunt.log.error('No files provided to the defs task.');
                 } else {
-                    grunt.log.ok(filesNum + (filesNum === 1 ? 'file' : ' files') + ' successfully generated.');
+                    grunt.log.ok(filesNum + (filesNum === 1 ? ' file' : ' files') + ' successfully generated.');
                 }
             }
             return validRun;
