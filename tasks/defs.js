@@ -18,7 +18,8 @@ module.exports = function (grunt) {
         'Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3.',
 
         function () {
-            var validRun = true,
+            var filesNum = 0,
+                validRun = true,
             // Merge task-specific and/or target-specific options with these defaults.
                 options = this.options();
 
@@ -54,6 +55,9 @@ module.exports = function (grunt) {
             });
 
             function runDefs(srcPath, destPath, defsOptions) {
+                grunt.log.log('Generating"' + destPath + '" from "' + srcPath + '"...');
+                filesNum++;
+
                 var defsOutput = defs(grunt.file.read(srcPath), defsOptions);
 
                 // Write the destination file.
@@ -70,11 +74,12 @@ module.exports = function (grunt) {
                 // Write defs output to the target file.
                 grunt.file.write(destPath, defsOutput.src);
 
-                // Print a success message.
-                grunt.log.ok('File "' + destPath + '" generated.');
                 return true;
             }
 
+            if (validRun) {
+                grunt.log.ok(filesNum + ' files successfully generated.');
+            }
             return validRun;
         });
 
