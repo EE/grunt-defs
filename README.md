@@ -1,4 +1,4 @@
-# defs
+# grunt-defs
 
 > Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3.
 
