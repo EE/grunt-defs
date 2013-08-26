@@ -61,7 +61,7 @@ module.exports = function (grunt) {
 
                 // Write the destination file.
                 if (defsOutput.errors) {
-                    grunt.log.write('Generating"' + destPath + '" from "' + srcPath + '"...');
+                    grunt.log.write('Generating "' + destPath + '" from "' + srcPath + '"...');
                     grunt.log.error();
                     defsOutput.errors.forEach(function (error) {
                         grunt.log.error(error);
