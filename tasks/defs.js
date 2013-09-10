@@ -70,7 +70,9 @@ module.exports = function (grunt) {
                 }
 
                 // Remove the temporary destination file if existed.
-                fs.unlink(destPath);
+                if (fs.existsSync(destPath)) {
+                    fs.unlinkSync(destPath);
+                }
 
                 // Write defs output to the target file.
                 grunt.file.write(destPath, defsOutput.src);
