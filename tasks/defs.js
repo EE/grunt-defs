@@ -25,7 +25,7 @@ module.exports = function (grunt) {
 
             // Iterate over all specified file groups.
             this.files.forEach(function (mapping) {
-                var tmpFileName = mapping.dest; // use the destination file as a temporary source one
+                var tmpFilePath = mapping.dest; // use the destination file as a temporary source one
 
                 if (options.defsConfigURL) {
                     options.defsOptions = grunt.file.readJSON(options.defsConfigURL);
@@ -34,20 +34,31 @@ module.exports = function (grunt) {
 
                 if (mapping.dest) {
                     // If destination file provided, concatenate all source files to a temporary one.
+                    // In such a case options transformDest & outputFileSuffix are ignored.
+
                     grunt.file.write(
-                        tmpFileName,
+                        tmpFilePath,
                         mapping.src.map(function (file) {
                             return grunt.file.read(file);
                         }).join('\n')
                     );
 
-                    if (!runDefs(tmpFileName, tmpFileName, options.defsOptions)) {
+                    if (!runDefs(tmpFilePath, tmpFilePath, options.defsOptions)) {
                         validRun = false;
                     }
                 } else {
                     // Otherwise each file will have its own defs output.
-                    mapping.src.map(function (file) {
-                        if (!runDefs(file, file + options.outputFileSuffix, options.defsOptions)) {
+
+                    // Transform the destination path.
+                    if (!options.transformDest) {
+                        // By default, append options.outputFileSuffix to the file name.
+                        options.transformDest = function transformDest(path) {
+                            return path + (options.outputFileSuffix || '');
+                        };
+                    }
+
+                    mapping.src.map(function (path) {
+                        if (!runDefs(path, options.transformDest(path), options.defsOptions)) {
                             validRun = false;
                         }
                     });
@@ -82,8 +93,7 @@ module.exports = function (grunt) {
 
             if (validRun) {
                 if (filesNum < 1) {
-                    validRun = false;
-                    grunt.log.error('No files provided to the defs task.');
+                    grunt.log.ok('No files provided to the defs task.');
                 } else {
                     grunt.log.ok(filesNum + (filesNum === 1 ? ' file' : ' files') + ' successfully generated.');
                 }

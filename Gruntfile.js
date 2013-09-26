@@ -25,7 +25,11 @@ module.exports = function (grunt) {
 
         // Configuration to be run (and then tested).
         defs: {
-            defsOptions: {},
+            options: {
+                transformDest: undefined,
+                outputFileSuffix: undefined,
+                defsOptions: {},
+            }
         },
 
         // Unit tests.
