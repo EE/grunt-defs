@@ -35,19 +35,37 @@ grunt.initConfig({
 })
 ```
 
-### Options
+#### Options
 
-TODO
+The `defs` task accepts a couple of options:
+
+```js
+{
+    // If files are provided without a destination, each file is processed
+    // separately and each of them is saved under original name with appended suffix provided here.
+    outputFileSuffix: string,
+
+    // If files are provided without a destination and this option is set, each file is processed
+    // separately and each of them is saved under original name processed by this function.
+    transformDest: function (sourcePath) {},
+
+    // Here one can set `defs` options; see: https://npmjs.org/package/defs
+    defsOptions: {
+        disallowDuplicated: true,
+        disallowUnknownReferences: false,
+        disallowVars: true,
+    },
+
+    // Instead of providing `defsOptions` manually, one can provide a URL to the `defs-config.json`
+    // configuration file; see: https://npmjs.org/package/defs
+    defsConfigUrl: string,
+}
+```
+
+Note that both `add` and `remove` options can be set to true; in such a case `ngAnnotate` first removes
+annotations and then re-adds them (it can be used to check if annotations were provided correctly).
 
 ### Usage Examples
-
-TODO
-
-#### Default Options
-
-TODO
-
-#### Custom Options
 
 TODO
 
