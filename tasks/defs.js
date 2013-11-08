@@ -11,8 +11,7 @@
 
 module.exports = function (grunt) {
 
-    var fs = require('fs'),
-        defs = require('defs');
+    var defs = require('defs');
 
     grunt.registerMultiTask('defs',
         'Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3.',
@@ -81,8 +80,8 @@ module.exports = function (grunt) {
                 }
 
                 // Remove the temporary destination file if existed.
-                if (fs.existsSync(destPath)) {
-                    fs.unlinkSync(destPath);
+                if (grunt.file.exists(destPath)) {
+                    grunt.file.delete(destPath);
                 }
 
                 // Write defs output to the target file.
