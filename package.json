@@ -1,6 +1,6 @@
 {
     "name": "grunt-defs",
-    "version": "0.5.1",
+    "version": "0.6.0",
     "description": "Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3.",
     "homepage": "https://github.com/EE/grunt-defs",
     "author": {
@@ -23,21 +23,21 @@
         }
     ],
     "dependencies": {
-        "defs": "~0.5.0"
+        "defs": "~0.6.1"
     },
     "devDependencies": {
-        "grunt-contrib-jshint": "~0.7.1",
-        "grunt-contrib-nodeunit": "~0.2.2",
-        "grunt-contrib-clean": "~0.5.0",
-        "load-grunt-tasks": "~0.2.0"
+        "grunt-contrib-jshint": "0.7.2",
+        "grunt-contrib-nodeunit": "0.2.2",
+        "grunt-contrib-clean": "0.5.0",
+        "load-grunt-tasks": "0.2.0"
     },
     "peerDependencies": {
-        "grunt": "~0.4.1"
+        "grunt": "~0.4.2"
     },
     "scripts": {
         "test": "grunt test"
     },
     "engines": {
-        "node": ">= 0.10.0"
+        "node": ">= 0.10.22"
     }
 }
