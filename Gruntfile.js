@@ -10,17 +10,36 @@
 'use strict';
 
 module.exports = function (grunt) {
-    // Project configuration.
+    require('time-grunt')(grunt);
+
     grunt.initConfig({
-        jshint: {
-            options: {
-                jshintrc: true,
+        clean: {
+            test: {
+                src: ['test/tmp'],
             },
-            all: [
-                'Gruntfile.js',
-                'tasks/*.js',
-                '<%= nodeunit.tests %>',
-            ],
+        },
+
+        eslint: {
+            all: {
+                src: [
+                    'Gruntfile.js',
+                    'tasks',
+                    'test',
+                ],
+            },
+        },
+
+        jscs: {
+            all: {
+                src: [
+                    'Gruntfile.js',
+                    'tasks/**/*.js',
+                    'test/**/*.js',
+                ],
+                options: {
+                    config: '.jscsrc',
+                },
+            },
         },
 
         // Configuration to be run (and then tested).
@@ -29,12 +48,7 @@ module.exports = function (grunt) {
                 transformDest: undefined,
                 outputFileSuffix: undefined,
                 defsOptions: {},
-            }
-        },
-
-        // Unit tests.
-        nodeunit: {
-            tests: ['test/*_test.js'],
+            },
         },
 
     });
@@ -45,12 +59,14 @@ module.exports = function (grunt) {
     // Load all grunt tasks matching the `grunt-*` pattern.
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('test', ['nodeunit']);
+    grunt.registerTask('lint', [
+        'eslint',
+        'jscs',
+    ]);
 
     // By default, lint and run all tests.
     grunt.registerTask('default', [
-        'jshint',
+        'lint',
         'defs',
-        'test',
     ]);
 };
