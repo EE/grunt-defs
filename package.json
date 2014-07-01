@@ -1,7 +1,7 @@
 {
     "name": "grunt-defs",
     "version": "0.6.2-pre",
-    "description": "Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3.",
+    "description": "Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3",
     "homepage": "https://github.com/EE/grunt-defs",
     "author": {
         "name": "Michał Gołębiowski",
