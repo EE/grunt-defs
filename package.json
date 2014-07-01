@@ -26,10 +26,12 @@
         "defs": "~0.6.2"
     },
     "devDependencies": {
+        "expect.js": "0.3.1",
         "grunt-cli": "0.1.13",
         "grunt-contrib-clean": "0.5.0",
         "grunt-eslint": "0.5.0",
         "grunt-jscs": "0.6.1",
+        "grunt-mocha-test": "0.11.0",
         "jscs-trailing-comma": "0.3.0",
         "load-grunt-tasks": "0.6.0",
         "time-grunt": "0.3.2"
@@ -38,7 +40,7 @@
         "grunt": "~0.4.2"
     },
     "scripts": {
-        "test": "grunt test"
+        "test": "grunt"
     },
     "engines": {
         "node": ">= 0.10.22"

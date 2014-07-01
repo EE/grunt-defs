@@ -44,13 +44,22 @@ module.exports = function (grunt) {
 
         // Configuration to be run (and then tested).
         defs: {
-            options: {
-                transformDest: undefined,
-                outputFileSuffix: undefined,
-                defsOptions: {},
+            simple: {
+                files: {
+                    'test/tmp/simple.js': 'test/fixtures/simple.js',
+                },
             },
         },
 
+        // Unit tests.
+        mochaTest: {
+            all: {
+                options: {
+                    reporter: 'spec',
+                },
+                src: ['test/spec.js'],
+            },
+        },
     });
 
     // Actually load this plugin's task(s).
@@ -68,5 +77,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         'lint',
         'defs',
+        'mochaTest',
     ]);
 };
