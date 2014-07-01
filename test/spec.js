@@ -11,16 +11,28 @@ function readTmp(filename) {
     return readFile('test/tmp/' + filename);
 }
 
-function readFixture(filename) {
-    return readFile('test/fixtures/' + filename);
-}
-
 function readExpected(filename) {
     return readFile('test/expected/' + filename);
 }
 
+function check(filename) {
+    expect(readTmp(filename)).to.be(readExpected(filename));
+}
+
 describe('grunt-defs', function () {
     it('should transform the file', function () {
-        expect(readTmp('simple.js')).to.be(readExpected('simple.js'));
+        check('src1.js');
+    });
+
+    it('should transform the path using the `transformDest` function', function () {
+        check('src2-transformed.js');
+    });
+
+    it('should add `outputFileSuffix` to the path', function () {
+        check('src3.js-suffix');
+    });
+
+    it('should transform loop closures when `defsOptions.loopClosures === "iife"`', function () {
+        check('src4.js');
     });
 });

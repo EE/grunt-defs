@@ -42,11 +42,49 @@ module.exports = function (grunt) {
             },
         },
 
+        // Copy files to be processed by the defs task to the temporary directory.
+        copy: {
+            defs: {
+                files: {
+                    'test/tmp/src3.js': 'test/fixtures/src3.js',
+                },
+            },
+        },
+
         // Configuration to be run (and then tested).
         defs: {
+            options: {
+                defsOptions: {
+                    disallowUnknownReferences: false,
+                },
+            },
             simple: {
                 files: {
-                    'test/tmp/simple.js': 'test/fixtures/simple.js',
+                    'test/tmp/src1.js': 'test/fixtures/src1.js',
+                },
+            },
+            transformDest: {
+                options: {
+                    transformDest: function (/* src */) {
+                        return 'test/tmp/src2-transformed.js';
+                    },
+                },
+                src: 'test/fixtures/src2.js',
+            },
+            outputFileSuffix: {
+                options: {
+                    outputFileSuffix: '-suffix',
+                },
+                src: 'test/tmp/src3.js',
+            },
+            loopClosures: {
+                options: {
+                    defsOptions: {
+                        loopClosures: 'iife',
+                    },
+                },
+                files: {
+                    'test/tmp/src4.js': 'test/fixtures/src4.js',
                 },
             },
         },
@@ -75,7 +113,9 @@ module.exports = function (grunt) {
 
     // By default, lint and run all tests.
     grunt.registerTask('default', [
+        'clean',
         'lint',
+        'copy',
         'defs',
         'mochaTest',
     ]);
