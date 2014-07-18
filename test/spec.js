@@ -24,15 +24,17 @@ describe('grunt-defs', function () {
         check('src1.js');
     });
 
+    it('should transform loop closures when `defsOptions.loopClosures === "iife"`', function () {
+        check('src4.js');
+    });
+});
+
+describe('grunt-defs: deprecated options', function () {
     it('should transform the path using the `transformDest` function', function () {
         check('src2-transformed.js');
     });
 
     it('should add `outputFileSuffix` to the path', function () {
         check('src3.js-suffix');
-    });
-
-    it('should transform loop closures when `defsOptions.loopClosures === "iife"`', function () {
-        check('src4.js');
     });
 });

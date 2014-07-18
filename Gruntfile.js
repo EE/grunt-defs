@@ -63,6 +63,18 @@ module.exports = function (grunt) {
                     'test/tmp/src1.js': 'test/fixtures/src1.js',
                 },
             },
+            loopClosures: {
+                options: {
+                    defsOptions: {
+                        loopClosures: 'iife',
+                    },
+                },
+                files: {
+                    'test/tmp/src4.js': 'test/fixtures/src4.js',
+                },
+            },
+
+            /* The following options are deprecated & will be removed in the future. */
             transformDest: {
                 options: {
                     transformDest: function (/* src */) {
@@ -76,16 +88,6 @@ module.exports = function (grunt) {
                     outputFileSuffix: '-suffix',
                 },
                 src: 'test/tmp/src3.js',
-            },
-            loopClosures: {
-                options: {
-                    defsOptions: {
-                        loopClosures: 'iife',
-                    },
-                },
-                files: {
-                    'test/tmp/src4.js': 'test/fixtures/src4.js',
-                },
             },
         },
 

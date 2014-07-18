@@ -22,14 +22,72 @@ module.exports = function (grunt) {
             // Merge task-specific and/or target-specific options with these defaults.
                 options = this.options();
 
+            if (options.transformDest != null) {
+                grunt.log.warn(
+                    [
+                        'The `transformDest` option is deprecated and will be removed in the future.',
+                        'The following configuration:',
+                        '',
+                        '    app: {',
+                        '        options: {',
+                        '            transformDest: function (srcPath) {',
+                        '                return doSomethingWithSrcPath(srcPath);',
+                        '            },',
+                        '        },',
+                        '        src: [\'app/*.js\'],',
+                        '    },',
+                        '',
+                        'can be replaced by:',
+                        '',
+                        '    app: {',
+                        '        files: {',
+                        '           expand: true,',
+                        '           src: [\'app/*.js\'],',
+                        '           rename: function (destPath, srcPath) {',
+                        '               return doSomethingWithSrcPath(srcPath);',
+                        '           },',
+                        '        },',
+                        '    },',
+                    ].join('\n')
+                );
+            }
+
+            if (options.outputFileSuffix != null) {
+                grunt.log.warn(
+                    [
+                        'The `outputFileSuffix` option is deprecated and will be removed in the future.',
+                        'The following configuration:',
+                        '',
+                        '    app: {',
+                        '        options: {',
+                        '            outputFileSuffix: \'-annotated\',',
+                        '        },',
+                        '        src: [\'app/*.js\'],',
+                        '    },',
+                        '',
+                        'can be replaced by:',
+                        '',
+                        '    app: {',
+                        '        files: {',
+                        '           expand: true,',
+                        '           src: [\'app/*.js\'],',
+                        '           rename: function (destPath, srcPath) {',
+                        '               return srcPath + \'-annotated\';',
+                        '           },',
+                        '        },',
+                        '    },',
+                    ].join('\n')
+                );
+            }
+
+            if (options.defsConfigURL) {
+                options.defsOptions = grunt.file.readJSON(options.defsConfigURL);
+                delete options.defsConfigURL;
+            }
+
             // Iterate over all specified file groups.
             this.files.forEach(function (mapping) {
                 var tmpFilePath = mapping.dest; // use the destination file as a temporary source one
-
-                if (options.defsConfigURL) {
-                    options.defsOptions = grunt.file.readJSON(options.defsConfigURL);
-                    delete options.defsConfigURL;
-                }
 
                 if (mapping.dest) {
                     // If destination file provided, concatenate all source files to a temporary one.

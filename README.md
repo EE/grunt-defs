@@ -45,14 +45,6 @@ The `defs` task accepts a couple of options:
 
 ```js
 {
-    // If files are provided without a destination, each file is processed
-    // separately and each of them is saved under original name with appended suffix provided here.
-    outputFileSuffix: string,
-
-    // If files are provided without a destination and this option is set, each file is processed
-    // separately and each of them is saved under original name processed by this function.
-    transformDest: function (sourcePath) {},
-
     // Here one can set `defs` options; see: https://npmjs.org/package/defs
     defsOptions: {
         disallowDuplicated: true,
