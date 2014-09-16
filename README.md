@@ -69,4 +69,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2013 Laboratorium EE. Licensed under the MIT license.
+Copyright (c) 2014 Laboratorium EE. Licensed under the MIT license.
