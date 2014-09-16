@@ -60,7 +60,48 @@ The `defs` task accepts a couple of options:
 
 ### Usage Examples
 
-TODO
+```js
+grunt.initConfig({
+    defs: {
+        options: {
+            defsConfigURL: 'defs-config.json',
+        },
+        app1: {
+            files: {
+                'a.js': ['a.js'],
+                'c.js': ['b.js'],
+                'f.js': ['d.js', 'e.js'],
+            },
+        },
+        app2: {
+            files: [
+                {
+                    expand: true,
+                    src: ['f.js'],
+                    ext: '.defs.js', // Dest filepaths will have this extension.
+                    extDot: 'last',  // Extensions in filenames begin after the last dot
+                },
+            ],
+        },
+        app3: {
+            files: [
+                {
+                    expand: true,
+                    src: ['g.js'],
+                    rename: function (dest, src) { return src + '-defs'; },
+                },
+            ],
+        },
+    },
+});
+
+grunt.loadNpmTasks('grunt-defs');
+```
+
+After executing `grunt defs`, you'll get file `a.js` transformed and saved under the same name, file `b.js`
+transformed and saved as `c.js` and files `d.js` and `e.js` concatenated, transformed and saved as `f.js`.
+
+A transformed version of the `f.js` file will be saved as `f.defs.js` and a transformed version of the `g.js` file will be saved as `g.js-defs`.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
