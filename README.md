@@ -3,7 +3,7 @@
 > Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3
 
 [![Build Status](https://travis-ci.org/EE/grunt-defs.svg?branch=master)](https://travis-ci.org/EE/grunt-defs)
-[![Build status](https://ci.appveyor.com/api/projects/status/qy7mu03jtts47o46/branch/master)](https://ci.appveyor.com/project/mzgol/grunt-defs/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/qy7mu03jtts47o46/branch/master?svg=true)](https://ci.appveyor.com/project/mzgol/grunt-defs/branch/master)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ## Getting Started
