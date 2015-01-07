@@ -16,11 +16,7 @@
     "url": "https://github.com/EE/grunt-defs.git"
   },
   "bugs": "https://github.com/EE/grunt-defs/issues",
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "license": "MIT",
   "files": [
     "tasks"
   ],
