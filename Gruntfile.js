@@ -29,19 +29,6 @@ module.exports = function (grunt) {
             },
         },
 
-        jscs: {
-            all: {
-                src: [
-                    'Gruntfile.js',
-                    'tasks/**/*.js',
-                    'test/**/*.js',
-                ],
-                options: {
-                    config: '.jscsrc',
-                },
-            },
-        },
-
         // Copy files to be processed by the defs task to the temporary directory.
         copy: {
             defs: {
@@ -70,24 +57,8 @@ module.exports = function (grunt) {
                     },
                 },
                 files: {
-                    'test/tmp/src4.js': 'test/fixtures/src4.js',
+                    'test/tmp/src2.js': 'test/fixtures/src2.js',
                 },
-            },
-
-            /* The following options are deprecated & will be removed in the future. */
-            transformDest: {
-                options: {
-                    transformDest: function (/* src */) {
-                        return 'test/tmp/src2-transformed.js';
-                    },
-                },
-                src: 'test/fixtures/src2.js',
-            },
-            outputFileSuffix: {
-                options: {
-                    outputFileSuffix: '-suffix',
-                },
-                src: 'test/tmp/src3.js',
             },
         },
 
@@ -110,7 +81,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('lint', [
         'eslint',
-        'jscs',
     ]);
 
     // By default, lint and run all tests.

@@ -1,8 +1,6 @@
-if (true) {
-    let d = 42;
-    const e = 8;
-    let f = 12;
+for (let i = 0; i < 5; i++) {
+    const j = i;
+    setTimeout(function () {
+        this.a = j;
+    });
 }
-let d = 66;
-const e = 66;
-const f = 102;

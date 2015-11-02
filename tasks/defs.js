@@ -14,18 +14,19 @@ module.exports = function (grunt) {
     var defs = require('defs');
 
     grunt.registerMultiTask('defs',
-        'Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3.',
+        'Static scope analysis and transpilation of ES6 block scoped ' +
+            'const and let variables, to ES3.',
 
         function () {
-            var filesNum = 0,
-                validRun = true,
+            var filesNum = 0;
+            var validRun = true;
             // Merge task-specific and/or target-specific options with these defaults.
-                options = this.options();
+            var options = this.options();
 
             if (options.transformDest != null) {
-                grunt.log.warn(
+                grunt.fail.fatal(
                     [
-                        'The `transformDest` option is deprecated and will be removed in the future.',
+                        'The `transformDest` option is no longer supported.',
                         'The following configuration:',
                         '',
                         '    app: {',
@@ -37,7 +38,7 @@ module.exports = function (grunt) {
                         '        src: [\'app/*.js\'],',
                         '    },',
                         '',
-                        'can be replaced by:',
+                        'should be replaced by:',
                         '',
                         '    app: {',
                         '        files: [',
@@ -55,9 +56,9 @@ module.exports = function (grunt) {
             }
 
             if (options.outputFileSuffix != null) {
-                grunt.log.warn(
+                grunt.fail.fatal(
                     [
-                        'The `outputFileSuffix` option is deprecated and will be removed in the future.',
+                        'The `outputFileSuffix` option is no longer supported.',
                         'The following configuration:',
                         '',
                         '    app: {',
@@ -67,7 +68,7 @@ module.exports = function (grunt) {
                         '        src: [\'app/*.js\'],',
                         '    },',
                         '',
-                        'can be replaced by:',
+                        'should be replaced by:',
                         '',
                         '    app: {',
                         '        files: [',
@@ -89,44 +90,7 @@ module.exports = function (grunt) {
                 delete options.defsConfigURL;
             }
 
-            // Iterate over all specified file groups.
-            this.files.forEach(function (mapping) {
-                var tmpFilePath = mapping.dest; // use the destination file as a temporary source one
-
-                if (mapping.dest) {
-                    // If destination file provided, concatenate all source files to a temporary one.
-                    // In such a case options transformDest & outputFileSuffix are ignored.
-
-                    grunt.file.write(
-                        tmpFilePath,
-                        mapping.src.map(function (file) {
-                            return grunt.file.read(file);
-                        }).join('\n')
-                    );
-
-                    if (!runDefs(tmpFilePath, tmpFilePath, options.defsOptions)) {
-                        validRun = false;
-                    }
-                } else {
-                    // Otherwise each file will have its own defs output.
-
-                    // Transform the destination path.
-                    if (!options.transformDest) {
-                        // By default, append options.outputFileSuffix to the file name.
-                        options.transformDest = function transformDest(path) {
-                            return path + (options.outputFileSuffix || '');
-                        };
-                    }
-
-                    mapping.src.map(function (path) {
-                        if (!runDefs(path, options.transformDest(path), options.defsOptions)) {
-                            validRun = false;
-                        }
-                    });
-                }
-            });
-
-            function runDefs(srcPath, destPath, defsOptions) {
+            var runDefs = function runDefs(srcPath, destPath, defsOptions) {
                 filesNum++;
 
                 var defsOutput = defs(grunt.file.read(srcPath), defsOptions);
@@ -150,13 +114,34 @@ module.exports = function (grunt) {
                 grunt.file.write(destPath, defsOutput.src);
 
                 return true;
-            }
+            };
+
+            // Iterate over all specified file groups.
+            this.files.forEach(function (mapping) {
+                // Use the destination file as a temporary source one.
+                var tmpFilePath = mapping.dest;
+
+                // Concatenate all source files to a temporary one.
+
+                grunt.file.write(
+                    tmpFilePath,
+                    mapping.src.map(function (file) {
+                        return grunt.file.read(file);
+                    }).join('\n')
+                );
+
+                if (!runDefs(tmpFilePath, tmpFilePath, options.defsOptions)) {
+                    validRun = false;
+                }
+            });
 
             if (validRun) {
                 if (filesNum < 1) {
                     grunt.log.ok('No files provided to the defs task.');
                 } else {
-                    grunt.log.ok(filesNum + (filesNum === 1 ? ' file' : ' files') + ' successfully generated.');
+                    grunt.log.ok(
+                        filesNum + (filesNum === 1 ? ' file' : ' files') +
+                        ' successfully generated.');
                 }
             }
             return validRun;

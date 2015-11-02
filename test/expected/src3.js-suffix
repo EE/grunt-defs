@@ -1,9 +1,0 @@
-if (true) {
-    var g = 42;
-    var h = 8;
-    var i = 12;
-} else {
-    var g$0 = 66;
-    var h$0 = 66;
-    var i$0 = 102;
-}
