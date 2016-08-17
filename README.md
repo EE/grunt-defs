@@ -104,7 +104,7 @@ transformed and saved as `c.js` and files `d.js` and `e.js` concatenated, transf
 A transformed version of the `f.js` file will be saved as `f.defs.js` and a transformed version of the `g.js` file will be saved as `g.js-defs`.
 
 ## Supported Node.js versions
-This project aims to support all Node.js LTS versions in the "active" phase (see [LTS README](https://github.com/nodejs/LTS/blob/master/README.md) for more details) as well as the latest stable Node.js. Today that means Node.js 0.12 & 4.x.
+This project aims to support all Node.js LTS versions in the "active" phase (see [LTS README](https://github.com/nodejs/LTS/blob/master/README.md) for more details) as well as the latest stable Node.js.
 
 Because of the popularity of this package and Node.js 0.10, this version is temporarily supported as well.
 
