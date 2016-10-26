@@ -6,6 +6,8 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/qy7mu03jtts47o46/branch/master?svg=true)](https://ci.appveyor.com/project/mgol/grunt-defs/branch/master)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
+**NOTE: `grunt-defs` is no longer developed similarly to the underlying [defs](https://www.npmjs.com/package/defs) package. Use Babel or Typescript with their Grunt plugins; they do so much more.**
+
 ## Getting Started
 This plugin requires Grunt.
 
