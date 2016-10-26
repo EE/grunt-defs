@@ -1,6 +1,6 @@
 {
   "name": "grunt-defs",
-  "version": "2.0.2",
+  "version": "2.0.3-pre",
   "description": "Static scope analysis and transpilation of ES6 block scoped const and let variables, to ES3",
   "homepage": "https://github.com/EE/grunt-defs",
   "author": {
