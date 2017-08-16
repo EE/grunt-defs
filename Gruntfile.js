@@ -2,7 +2,7 @@
  * grunt-defs
  * https://github.com/EE/grunt-defs
  *
- * Author Michał Gołębiowski <michal.golebiowski@laboratorium.ee>
+ * Author Michał Gołębiowski-Owczarek <michal.golebiowski@laboratorium.ee>
  * Copyright (c) 2013 Laboratorium EE
  * Licensed under the MIT license.
  */
